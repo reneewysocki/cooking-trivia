@@ -4,6 +4,7 @@ $(document).ready(function () {
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
+    var theClock;
 
     var questions = [
         {
@@ -36,7 +37,7 @@ $(document).ready(function () {
 
     //generates the question
     function generateHTML() {
-        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'>" + timer + "</span></p><p class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><p class='text-left questionP'>" + questions[questionCounter].question + "</p><p class='answer'>" + questions[questionCounter].choices[0] + "</p><p class='answer'>" + questions[questionCounter].choices[1] + "</p><p class='answer'>" + questions[questionCounter].choices[2] + "</p><p class='answer'>" + questions[questionCounter].choices[3] + "</p>";
+        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'> 30 </span></p><p class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><p class='text-left questionP'>" + questions[questionCounter].question + "</p><p class='answer'>" + questions[questionCounter].choices[0] + "</p><p class='answer'>" + questions[questionCounter].choices[1] + "</p><p class='answer'>" + questions[questionCounter].choices[2] + "</p><p class='answer'>" + questions[questionCounter].choices[3] + "</p>";
         $(".mainArea").html(gameHTML);
     }
 
@@ -49,10 +50,12 @@ $(document).ready(function () {
         if (selectedAnswer === questions[questionCounter].correctAnswer) {
             // console.log("Correct Answer");
             generateWin();
+            clearInterval(theClock);
         }
         else {
             //console.log("Incorrect Answer");
             generateLoss();
+            clearInterval(theClock);
         }
     });
 
@@ -71,12 +74,15 @@ $(document).ready(function () {
     };
 
     function generateTimeOut() {
+        unanswered++;
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].correctAnswer + "</p>" + "<img class='center-block img-wrong' src='assets/images/ramsey/can-you-wake-up.gif'>";
+	    $(".mainArea").html(gameHTML);
+	    setTimeout(next, 3000);
         
-  
     }
 
     function next() {
-        if (questionCounter < 1) {
+        if (questionCounter < (questions.length-1)) {
         questionCounter++;
         generateHTML();
         timer = 30;
