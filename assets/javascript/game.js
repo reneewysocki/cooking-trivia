@@ -31,7 +31,7 @@ $(document).ready(function () {
     //gives start button functionality
     $("body").on("click", ".start-button", function (event) {
         generateHTML();
-
+        timerWrapper();
     });
 
     //generates the question
@@ -70,22 +70,56 @@ $(document).ready(function () {
         incorrect++;
     };
 
+    function generateTimeOut() {
+        
+  
+    }
+
     function next() {
-        if (questionCounter < (questions.length - 1)) {
+        if (questionCounter < 1) {
         questionCounter++;
         generateHTML();
-        counter = 30;
-        //timerWrapper();
+        timer = 30;
+        timerWrapper();
         }
         else {
            finalScreen();
-         console.log("end")
+           timer = 0;
+           console.log("end")
+        }
+    };
+
+    function timerWrapper() {
+        theClock = setInterval(thirtySeconds, 1000);
+        function thirtySeconds() {
+            if (timer === 0) {
+                clearInterval(theClock);
+                generateTimeOut();
+            }
+            if (timer > 0) {
+                timer--;
+            }
+            $(".timer").html(timer);
         }
     };
 
     function finalScreen() {
         gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
         $(".mainArea").html(gameHTML);
+    }
+
+    $("body").on("click", ".reset-button", function(){
+        resetGame();
+    }); 
+
+    function resetGame() {
+        questionCounter = 0;
+        correct = 0;
+        incorrect = 0;
+        unanswered = 0;
+        timer = 30;
+        generateHTML();
+        timerWrapper();
     }
 
 });
