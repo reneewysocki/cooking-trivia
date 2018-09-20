@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     //generates the question
     function generateHTML() {
-        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'> 30 </span></p><p class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><p class='text-left questionP'>" + questions[questionCounter].question + "</p><p class='answer'>" + questions[questionCounter].choices[0] + "</p><p class='answer'>" + questions[questionCounter].choices[1] + "</p><p class='answer'>" + questions[questionCounter].choices[2] + "</p><p class='answer'>" + questions[questionCounter].choices[3] + "</p>";
+        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'>" + timer + "</span></p><p class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><p class='text-left questionP'>" + questions[questionCounter].question + "</p><p class='answer'>" + questions[questionCounter].choices[0] + "</p><p class='answer'>" + questions[questionCounter].choices[1] + "</p><p class='answer'>" + questions[questionCounter].choices[2] + "</p><p class='answer'>" + questions[questionCounter].choices[3] + "</p>";
         $(".mainArea").html(gameHTML);
     }
 
@@ -60,27 +60,32 @@ $(document).ready(function () {
         correct++;
         gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + questions[questionCounter].correctAnswer + "</p>" + questions[questionCounter].imageUrl;
         $(".mainArea").html(gameHTML);
-        setTimeout(wait, 3000);
+        setTimeout(next, 3000);
     };
 
     function generateLoss() {
         gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img class='center-block img-wrong' src='assets/images/ramsey/are-you-kidding-me.gif'>";
         $(".mainArea").html(gameHTML);
-        setTimeout(wait, 3000);
+        setTimeout(next, 3000);
         incorrect++;
     };
 
-    function wait() {
-        if (questionCounter < questions.length) {
+    function next() {
+        if (questionCounter < (questions.length - 1)) {
         questionCounter++;
         generateHTML();
         counter = 30;
         //timerWrapper();
         }
         else {
-         //   finalScreen();
+           finalScreen();
          console.log("end")
         }
+    };
+
+    function finalScreen() {
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+        $(".mainArea").html(gameHTML);
     }
 
 });
