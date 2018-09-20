@@ -11,63 +11,67 @@ $(document).ready(function () {
     var questions = [
         {
             question: 'What pasta shape means "little ears" in Italian?',
-            imageUrl: "<img src='assets/images/orecchiette.jpg'  width='500' height=auto>",
+            imageUrl: "<img src='assets/images/orecchiette.jpg' class='answerImg img-fluid'>",
             choices: ["Tagliatelle", "Cavatappi", "Orecchiette", "Campanelle"],
             correctAnswer: "Orecchiette",
         },
         {
             question: 'What term means "to cut vegetables, fruits, or cheeses into thin strips"?',
-            imageUrl: "<img src='assets/images/julienne.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/julienne.jpg' class='answerImg img-fluid'>",
             choices: ["Julienne", "Chiffonade", "Dice", "Bruinoise"],
             correctAnswer: "Julienne",
         },
         {
             question: 'V.S., V.S.O.P., and V.V.S.O.P. are all different ratings of what?',
-            imageUrl: "<img src='assets/images/alcohol.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/alcohol.jpg' class='answerImg img-fluid'>",
             choices: ["Tequila", "Cognac", "Whiskey", "Wine"],
             correctAnswer: "Cognac",
         },
         {
-            question: 'What is court-bouillon?',
-            imageUrl: "<img src='assets/images/court-bouillon.jpg' width='500' height=auto'>",
-            choices: ["French seasoning blend", "Clarified stock", "Water bath for keeping things warm", "Broth used to poach other foods"],
-            correctAnswer: "Broth used to poach other foods",
+            question: 'What is autolyze?',
+            imageUrl: "<img src='assets/images/autolyze.jpg' class='answerImg img-fluid'>",
+            choices: ["Equal parts flour and water and a small amount of commerical yeast", "A mixture of water and flour that has been converted into a leavening agent", "A portion of the dough that is already populated with yeast", "A process in which flour and water are mixed and allowed to rest for a period of time"],
+            correctAnswer: "A process in which flour and water are mixed and allowed to rest for a period of time",
         },
         {
             question: 'A roux is typically made with flour and what else?',
-            imageUrl: "<img src='assets/images/roux.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/roux.jpg' class='answerImg img-fluid'>",
             choices: ["Butter", "Stock", "Egg whites", "Water"],
             correctAnswer: "Butter",
         },
         {
             question: 'What temperature should poultry be cooked to?',
-            imageUrl: "<img src='assets/images/poultry-temp.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/poultry-temp.jpg' class='answerImg img-fluid'>",
             choices: ["125°", "185°", "165°", "150°"],
             correctAnswer: "165°",
         },
         {
             question: 'What is ther difference between broth and stock?',
-            imageUrl: "<img src='assets/images/stock.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/stock.jpg' class='answerImg img-fluid'>",
             choices: ["Broth is completely clear", "Stock is reduced by half", "Broth is made with meat, not just bones", "Broth is cooked for a shorter amount of time"],
             correctAnswer: "Broth is made with meat, not just bones",
         },
         {
             question: 'What is the difference between ice cream and gelato?',
-            imageUrl: "<img src='assets/images/gelato.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/gelato.jpg' class='answerImg img-fluid'>",
             choices: ["Gelato has less fat and air", "Gelato has more fat and less air", "Gelato has more air and less less", "Gelato contains egg whites"],
             correctAnswer: "Gelato has less fat and air",
         },
         {
             question: 'What herb is this?',
-            imageUrl: "<img src='assets/images/tarragon.jpg' width='500' height=auto'>",
+            imageUrl: "<img src='assets/images/tarragon.jpg' class='answerImg img-fluid'>",
             choices: ["Rosemary", "Dill", "Coriander", "Tarragon"],
             correctAnswer: "Tarragon",
         },
     ];
 
+    var reactionGifsBad = ["are-you-kidding-me.gif", "you-shouldnt-be-near-food.gif", "wrong.gif", "cant-even.gif", "seriously.gif", "get-your-shit-together.gif", "no-way.gif"];
+    var reactionGifsGood = ["nice-work-there.gif", "dancing-in-kitchen.gif", "yes.gif", "alex-wink.gif", "still-got-it.gif", "rad.gif", "unstoppable.gif"];
+    
+
     //creates start button on initial screen
     function startButton() {
-        startScreen = "<p class='text-center'><a class='btn btn-primary start-button' href='#' role='button'>Start Quiz</a></p>";
+        startScreen = "<p class='text-center'><a id='startButton' class='btn btn-primary start-button' href='#' role='button'>Start Quiz</a></p>";
         $(".mainArea").html(startScreen);
     }
 
@@ -81,7 +85,7 @@ $(document).ready(function () {
 
     //generates the question
     function generateHTML() {
-        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'> 30 </span></p><p class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><p class='text-left questionP'>" + questions[questionCounter].question + "</p><p class='answer'>" + questions[questionCounter].choices[0] + "</p><p class='answer'>" + questions[questionCounter].choices[1] + "</p><p class='answer'>" + questions[questionCounter].choices[2] + "</p><p class='answer'>" + questions[questionCounter].choices[3] + "</p>";
+        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'> 30 </span></p><p id='hintImage' class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><div id='question' class='text-center'>" + questions[questionCounter].question + "</div><div id='answerDiv'><div id='ans1' class='answer'>" + questions[questionCounter].choices[0] + "</div><div id='ans2' class='answer'>" + questions[questionCounter].choices[1] + "</div><div id='ans3' class='answer'>" + questions[questionCounter].choices[2] + "</div><div id='ans4' class='answer'>" + questions[questionCounter].choices[3] + "</div></div>";
         $(".mainArea").html(gameHTML);
     }
 
@@ -105,21 +109,23 @@ $(document).ready(function () {
 
     function generateWin() {
         correct++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + questions[questionCounter].correctAnswer + "</p>" + questions[questionCounter].imageUrl;
+        var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
-        setTimeout(next, 2000);
+        setTimeout(next, 3000);
     };
 
     function generateLoss() {
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img class='center-block img-wrong' src='assets/images/ramsey/are-you-kidding-me.gif'>";
+        var randBadGif = reactionGifsBad[Math.floor(Math.random() * reactionGifsBad.length)];
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
-        setTimeout(next, 2000);
+        setTimeout(next, 3000);
         incorrect++;
     };
 
     function generateTimeOut() {
         unanswered++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].correctAnswer + "</p>" + "<img class='center-block img-wrong' src='assets/images/ramsey/can-you-wake-up.gif'>";
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/can-you-wake-up.gif' class='img-wrong'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
 
@@ -154,7 +160,8 @@ $(document).ready(function () {
     };
 
     function finalScreen() {
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+        $('.timer').hide();
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
         $(".mainArea").html(gameHTML);
     }
 

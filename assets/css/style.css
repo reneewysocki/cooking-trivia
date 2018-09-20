@@ -1,3 +1,63 @@
+header {
+    padding: 10px;
+}
+
 .mainArea {
-    background-color: lightblue;
+   /* background-color: lightblue; */
+    padding-bottom: 20px;
 };
+
+.answer {
+    background-color: blue;
+    width: 75%
+}
+
+#question {
+    font-weight: bold;
+    padding: 5px;
+}
+
+#answerDiv {
+    text-align: center;
+    align-content: center;
+}
+
+
+#ans1, #ans2, #ans3, #ans4 {
+    padding: 5px;
+    border-radius: 10px;
+    width: 60%;
+    margin: auto;
+    
+}
+
+#ans1:hover, #ans2:hover, #ans3:hover, #ans4:hover {
+    padding: 5px;
+    background-color: blue;
+    color: white;
+    width: 60%;
+    margin: auto;
+}
+
+
+.answerImg {
+    width: 500px;
+    margin: auto;
+    display: block;
+}
+
+.timerP {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+}
+
+.img-wrong {
+    display: block;
+    margin: auto;
+} 
+
+#startButton {
+   margin-top: 20px;
+}
+
