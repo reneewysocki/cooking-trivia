@@ -110,14 +110,14 @@ $(document).ready(function () {
     function generateWin() {
         correct++;
         var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
-        gameHTML = "</span></p>" + "<p class='text-center'>Correct! <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "</span></p>" + "<p class='text-center'> <h2>Correct!</h2> <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
     };
 
     function generateLoss() {
         var randBadGif = reactionGifsBad[Math.floor(Math.random() * reactionGifsBad.length)];
-        gameHTML = "</span></p>" + "<p class='text-center'>Wrong! <br> The correct answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "</span></p>" + "<p class='text-center'> <h2>Wrong!</h2> <br> The correct answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
         incorrect++;
