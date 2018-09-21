@@ -30,7 +30,7 @@ $(document).ready(function () {
         {
             question: 'What is autolyze?',
             imageUrl: "<img src='assets/images/autolyze.jpg' class='answerImg img-fluid'>",
-            choices: ["Equal parts flour and water and a small amount of commerical yeast", "A mixture of water and flour that has been converted into a leavening agent", "A portion of the dough that is already populated with yeast", "A process in which flour and water are mixed and allowed to rest for a period of time"],
+            choices: ["Equal parts flour and water and a small amount of commercial yeast", "A mixture of water and flour that has been converted into a leavening agent", "A portion of the dough that is already populated with yeast", "A process in which flour and water are mixed and allowed to rest for a period of time"],
             correctAnswer: "A process in which flour and water are mixed and allowed to rest for a period of time",
         },
         {
@@ -110,7 +110,7 @@ $(document).ready(function () {
     function generateWin() {
         correct++;
         var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
-        gameHTML = "</span></p>" + "<p class='text-center'> <span class='resultHead'>Correct!<span> <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "</span></p>" + "<p class='text-center'> <span class='resultHead'>Correct!</span> <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
     };
