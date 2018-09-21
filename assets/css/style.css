@@ -1,10 +1,29 @@
+body {
+    background-color: lightblue;
+    background-image: url("../images/background.jpg");
+    font-family: 'Open Sans', sans-serif;
+}
+
 header {
-    padding: 10px;
+    padding: 30px;
+    background-color: #D75A52;
+    margin-bottom: 20px;
+    color: white;
+    border-bottom: 5px solid #8a4c35;
+}
+
+h1 {
+    font-family: Lilly, Georgia, 'Times New Roman', Times, serif;
+    line-height: 60px;
 }
 
 .mainArea {
-   /* background-color: lightblue; */
+   background-color: white;
+    margin-bottom: 20px;
     padding-bottom: 20px;
+   /* height: 80%; */
+   border: 5px solid #8a4c35; 
+   border-radius: 10px;
 };
 
 .answer {
@@ -33,8 +52,8 @@ header {
 
 #ans1:hover, #ans2:hover, #ans3:hover, #ans4:hover {
     padding: 5px;
-    background-color: blue;
-    color: white;
+    background-color: #94C4C1;
+    /*color: white; */
     width: 60%;
     margin: auto;
 }
@@ -57,7 +76,58 @@ header {
     margin: auto;
 } 
 
-#startButton {
-   margin-top: 20px;
+.start-button {
+   background-color: #E87851;
+   color: white;
+   padding: 10px;
+  font-size: 18px; 
+   border-radius: 10px;
+   font-family: Lilly, Georgia, 'Times New Roman', Times, serif;
+}
+
+.start-button:hover {
+    background-color: #D75A52;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    font-family: Lilly, Georgia, 'Times New Roman', Times, serif;
+}
+
+.reset-button {
+    background-color: #E87851;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    font-family: Lilly, Georgia, 'Times New Roman', Times, serif;
+ }
+ 
+ .reset-button:hover {
+     background-color: #D75A52;
+     color: white;
+     padding: 10px;
+     font-size: 18px;
+     border-radius: 10px;
+     font-family: Lilly, Georgia, 'Times New Roman', Times, serif;
+ }
+
+#startDiv {
+    margin-top: 20px;
+}
+
+#results {
+    padding-top: 20px;
+}
+
+#instructions {
+    text-align: center;
+    margin-top: 10px;
+    line-height: 30px;
+}
+
+@font-face {
+    font-family: Lilly;
+    src: url(Lilly/Lilly__.ttf);
 }
 

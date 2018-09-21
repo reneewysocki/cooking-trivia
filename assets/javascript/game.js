@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     //creates start button on initial screen
     function startButton() {
-        startScreen = "<p class='text-center'><a id='startButton' class='btn btn-primary start-button' href='#' role='button'>Start Quiz</a></p>";
+        startScreen = "<div id='instructions'>Are you a food genius? <br> Could you make it in culinary school? <br> <b> Prove it! </b> <br> You'll have 30 seconds each to answer " +  (questions.length + 1) + " questions. <br> Push the button below to begin. </div><div id='startDiv' class='text-center'><a class='start-button btn-block' href='#' role='button'>Start Quiz</a></div>";
         $(".mainArea").html(startScreen);
     }
 
@@ -110,14 +110,14 @@ $(document).ready(function () {
     function generateWin() {
         correct++;
         var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "<p class='text-center timerP'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
     };
 
     function generateLoss() {
         var randBadGif = reactionGifsBad[Math.floor(Math.random() * reactionGifsBad.length)];
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "<p class='text-center timerP'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! <br> The correct answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
         incorrect++;
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     function generateTimeOut() {
         unanswered++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + questions[questionCounter].correctAnswer + "</p>" + "<img src='assets/images/ramsey/can-you-wake-up.gif' class='img-wrong'>";
+        gameHTML = "<p class='text-center timeP'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  <br> The correct answer was: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/can-you-wake-up.gif' class='img-wrong'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
 
@@ -161,7 +161,7 @@ $(document).ready(function () {
 
     function finalScreen() {
         $('.timer').hide();
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
+        gameHTML = "<div id='results' class='text-center'> <p>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p> </div>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
         $(".mainArea").html(gameHTML);
     }
 
