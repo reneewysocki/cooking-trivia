@@ -124,6 +124,10 @@ h1 {
     font-size: 18px;
 }
 
+.resultHead {
+    font-size: 24px;
+}
+
 #instructions {
     text-align: center;
     margin-top: 10px;
