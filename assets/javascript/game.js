@@ -52,6 +52,12 @@ $(document).ready(function () {
             correctAnswer: "Broth is made with meat, not just bones",
         },
         {
+            question: 'How many teaspoons are in a tablespoon?',
+            imageUrl: "<img src='assets/images/measuring-spoons.jpg' class='answerImg img-fluid'>",
+            choices: ["Two", "Three", "Four", "Five"],
+            correctAnswer: "Three",
+        },
+        {
             question: 'What is the difference between ice cream and gelato?',
             imageUrl: "<img src='assets/images/gelato.jpg' class='answerImg img-fluid'>",
             choices: ["Gelato has less fat and air", "Gelato has more fat and less air", "Gelato has more air and less less", "Gelato contains egg whites"],
@@ -63,6 +69,31 @@ $(document).ready(function () {
             choices: ["Rosemary", "Dill", "Coriander", "Tarragon"],
             correctAnswer: "Tarragon",
         },
+        {
+            question: 'Which can you do without water?',
+            imageUrl: "<img src='assets/images/water-pot.jpg' class='answerImg img-fluid'>",
+            choices: ["Blanch", "Sauté", "Poach", "Sous Vide"],
+            correctAnswer: "Sauté",
+        },
+        {
+            question: 'Which one of these is Anise?',
+            imageUrl: "<img src='assets/images/spices.jpg' class='answerImg img-fluid'>",
+            choices: ["A", "B", "C", "D"],
+            correctAnswer: "B",
+        },
+        {
+            question: 'Which nation has the highest beef output?',
+            imageUrl: "<img src='assets/images/cows.jpg' class='answerImg img-fluid'>",
+            choices: ["France", "Australia", "Argentina", "USA"],
+            correctAnswer: "USA",
+        },
+        {
+            question: 'What is in a Hollandaise sauce?',
+            imageUrl: "<img src='assets/images/hollandaise.jpg' class='answerImg img-fluid'>",
+            choices: ["Cream, eggs, and butter", "Egg yolk, butter, and lemon", "Cheese, butter, and lemon", "Egg whites, mustard, cream"],
+            correctAnswer: "Egg yolk, butter, and lemon",
+        },
+        
     ];
 
     var reactionGifsBad = ["are-you-kidding-me.gif", "you-shouldnt-be-near-food.gif", "wrong.gif", "cant-even.gif", "seriously.gif", "get-your-shit-together.gif", "no-way.gif"];
