@@ -85,7 +85,7 @@ $(document).ready(function () {
 
     //generates the question
     function generateHTML() {
-        gameHTML = "<p class='text-center timerP'>Time: <span class='timer'> 30 </span></p><p id='hintImage' class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><div id='question' class='text-center'>" + questions[questionCounter].question + "</div><div id='answerDiv'><div id='ans1' class='answer'>" + questions[questionCounter].choices[0] + "</div><div id='ans2' class='answer'>" + questions[questionCounter].choices[1] + "</div><div id='ans3' class='answer'>" + questions[questionCounter].choices[2] + "</div><div id='ans4' class='answer'>" + questions[questionCounter].choices[3] + "</div></div>";
+        gameHTML = "<p class='text-center timerP'><span id='timer'>Time: <span class='timer'> 30 </span></span></p><p id='hintImage' class='hintImageP'>" + questions[questionCounter].imageUrl + "</p><div id='question' class='text-center'><span class='question'><b>" + questions[questionCounter].question + "</b></span></div><div id='answerDiv'><div id='ans1' class='answer'>" + questions[questionCounter].choices[0] + "</div><div id='ans2' class='answer'>" + questions[questionCounter].choices[1] + "</div><div id='ans3' class='answer'>" + questions[questionCounter].choices[2] + "</div><div id='ans4' class='answer'>" + questions[questionCounter].choices[3] + "</div></div>";
         $(".mainArea").html(gameHTML);
     }
 
@@ -110,14 +110,14 @@ $(document).ready(function () {
     function generateWin() {
         correct++;
         var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
-        gameHTML = "<p class='text-center timerP'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "</span></p>" + "<p class='text-center'>Correct! <br> The answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
     };
 
     function generateLoss() {
         var randBadGif = reactionGifsBad[Math.floor(Math.random() * reactionGifsBad.length)];
-        gameHTML = "<p class='text-center timerP'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! <br> The correct answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
+        gameHTML = "</span></p>" + "<p class='text-center'>Wrong! <br> The correct answer is: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
         incorrect++;
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     function generateTimeOut() {
         unanswered++;
-        gameHTML = "<p class='text-center timeP'>Time Remaining: <span class='timer'>" + "</span></p>" + "<p class='text-center'>You ran out of time!  <br> The correct answer was: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/can-you-wake-up.gif' class='img-wrong'>";
+        gameHTML =  "<p class='text-center'>You ran out of time!  <br> The correct answer was: <b>" + questions[questionCounter].correctAnswer + "</b></p>" + "<img src='assets/images/ramsey/can-you-wake-up.gif' class='img-wrong'>";
         $(".mainArea").html(gameHTML);
         setTimeout(next, 3000);
 
@@ -155,13 +155,16 @@ $(document).ready(function () {
             if (timer > 0) {
                 timer--;
             }
+            if (timer <= 10) {
+                $('#timer').addClass("timerEnd");
+            };
             $(".timer").html(timer);
         }
     };
 
     function finalScreen() {
         $('.timer').hide();
-        gameHTML = "<div id='results' class='text-center'> <p>Here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p> </div>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
+        gameHTML = "<div id='results' class='text-center'> <p> <h2>Here's how you did! </h2> </p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p> </div>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
         $(".mainArea").html(gameHTML);
     }
 
