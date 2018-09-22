@@ -93,6 +93,12 @@ $(document).ready(function () {
             choices: ["Cream, eggs, and butter", "Egg yolk, butter, and lemon", "Cheese, butter, and lemon", "Egg whites, mustard, cream"],
             correctAnswer: "Egg yolk, butter, and lemon",
         },
+        {
+            question: 'What is an 18th century word for flattening poultry for quicker cooking?',
+            imageUrl: "<img src='assets/images/flat-chicken.jpg' class='answerImg img-fluid'>",
+            choices: ["Ballotine", "Poundeyre", "Spatchcock", "Paillard"],
+            correctAnswer: "Spatchcock",
+        },
         
     ];
 
@@ -102,7 +108,7 @@ $(document).ready(function () {
 
     //creates start button on initial screen
     function startButton() {
-        startScreen = "<div id='instructions'>Are you a food genius? <br> Could you make it in culinary school? <br> <b> Prove it! </b> <br> You'll have 30 seconds each to answer " +  (questions.length + 1) + " questions. <br> Push the button below to begin. </div><div id='startDiv' class='text-center'><a class='start-button btn-block' href='#' role='button'>Start Quiz</a></div>";
+        startScreen = "<div id='instructions'>Are you a food genius? <br> Could you make it in culinary school? <br> <b> Prove it! </b> <br> You'll have 30 seconds each to answer " +  questions.length  + " questions. <br> Push the button below to begin. </div><div id='startDiv' class='text-center'><a class='start-button btn-block' href='#' role='button'>Start Quiz</a></div>";
         $(".mainArea").html(startScreen);
     }
 
