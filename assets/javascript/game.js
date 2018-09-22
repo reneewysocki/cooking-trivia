@@ -172,7 +172,6 @@ $(document).ready(function () {
         else {
             finalScreen();
             timer = 0;
-            console.log("end")
         }
     };
 
@@ -195,8 +194,23 @@ $(document).ready(function () {
 
     function finalScreen() {
         $('.timer').hide();
-        gameHTML = "<div id='results' class='text-center'> <p> <h2>Here's how you did! </h2> </p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p> </div>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
-        $(".mainArea").html(gameHTML);
+        if (correct > incorrect) {
+            var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
+            var winner = "<div class='text-center'><h2>You're a cooking genius!</h2></div><div>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>" + "</div>"
+            $(".mainArea").html(winner);  
+        } 
+        else if (correct === (questions.length)) {
+            var randGoodGif = reactionGifsGood[Math.floor(Math.random() * reactionGifsGood.length)];
+            var perfect = "<div class='text-center'><h2> <b>Perfect Score!</b> <br> You're a Culinary Master!</h2></div><div>" + "<img src='assets/images/ramsey/" + randGoodGif + "' class='img-wrong img-fluid'>" + "</div>"
+            $(".mainArea").html(perfect); 
+        } 
+        else if (correct < incorrect) {
+            var randBadGif = reactionGifsBad[Math.floor(Math.random() * reactionGifsBad.length)];
+            var loser = "<div class='text-center'><h2>Get back in the kitchen! <br> You need some practice.</h2></div><div>" + "<img src='assets/images/ramsey/" + randBadGif + "' class='img-wrong img-fluid'>" + "</div>"
+            $(".mainArea").html(loser);
+        }
+        gameHTML = "<div id='results' class='text-center'> <p> <h3>Here's how you did! </h3> </p>" + "<p class='summary-correct'>Correct Answers: " + correct + "</p>" + "<p>Wrong Answers: " + incorrect + "</p>" + "<p>Unanswered: " + unanswered + "</p> </div>" + "<p class='text-center reset-button-container'><a class='btn btn-block reset-button' href='#' role='button'>Retake The Quiz!</a></p>";
+        $(".mainArea").append(gameHTML);
     }
 
     $("body").on("click", ".reset-button", function () {
